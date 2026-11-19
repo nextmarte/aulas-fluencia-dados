@@ -37,25 +37,28 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 28px;
+      padding: 10px 26px;
       border-bottom: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.92);
+      background: rgba(15, 23, 42, 0.94);
       font-size: 14px;
       color: var(--muted);
-      gap: 16px;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .topbar-left {
+    .topbar-left, .topbar-right {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 600;
-      color: var(--text);
+      flex-wrap: wrap;
     }
+
+    .topbar-left { font-weight: 600; color: var(--text); }
 
     .badge {
       display: inline-flex;
       align-items: center;
+      gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 12px;
@@ -76,14 +79,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 44px;
+      padding: 20px 40px;
       overflow-y: auto;
     }
 
     .slide {
       display: none;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1120px;
       animation: fadeIn 0.2s ease;
     }
     .slide.active { display: block; }
@@ -94,31 +97,31 @@
     }
 
     .kicker {
-      font-size: 13px;
+      font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--accent);
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    h1 { font-size: clamp(30px, 4vw, 46px); line-height: 1.15; margin-bottom: 14px; font-weight: 800; }
-    h2 { font-size: clamp(24px, 3vw, 34px); line-height: 1.2; margin-bottom: 14px; font-weight: 700; }
-    h3 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+    h1 { font-size: clamp(28px, 3.8vw, 44px); line-height: 1.15; margin-bottom: 12px; font-weight: 800; }
+    h2 { font-size: clamp(23px, 2.8vw, 32px); line-height: 1.2; margin-bottom: 12px; font-weight: 700; }
+    h3 { font-size: 17px; margin-bottom: 8px; color: var(--text); }
 
-    p.lead { font-size: 18px; line-height: 1.5; color: var(--muted); margin-bottom: 18px; }
-    p, li { font-size: 16px; line-height: 1.55; color: #cbd5e1; }
+    p.lead { font-size: 17px; line-height: 1.5; color: var(--muted); margin-bottom: 16px; }
+    p, li { font-size: 15.5px; line-height: 1.52; color: #cbd5e1; }
     ul, ol { padding-left: 20px; }
-    li + li { margin-top: 7px; }
+    li + li { margin-top: 6px; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 12px; }
 
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 20px;
+      padding: 18px;
     }
     .card.highlight { border-color: rgba(56, 189, 248, 0.45); background: linear-gradient(180deg, rgba(56, 189, 248, 0.08), var(--surface)); }
     .card.ok { border-color: rgba(52, 211, 153, 0.4); background: linear-gradient(180deg, rgba(52, 211, 153, 0.08), var(--surface)); }
@@ -132,26 +135,90 @@
       padding: 14px 16px;
       margin-top: 10px;
       font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 1.55;
       color: #e2e8f0;
       overflow-x: auto;
       white-space: pre;
     }
 
-    .copy-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: var(--surface-2);
-      color: var(--text);
+    /* Bloco interativo webR */
+    .webr-box {
+      margin-top: 10px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--code-bg);
+    }
+    .webr-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 12px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .webr-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .webr-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 7px;
       padding: 4px 10px;
       font-size: 12px;
+      font-weight: 600;
       cursor: pointer;
     }
-    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .webr-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+    .webr-btn.run {
+      background: #059669;
+      border-color: #10b981;
+      color: #ffffff;
+    }
+    .webr-btn.run:hover:not(:disabled) { background: #10b981; color: #052e16; }
+    .webr-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    textarea.webr-editor {
+      width: 100%;
+      background: var(--code-bg);
+      color: #e2e8f0;
+      border: none;
+      outline: none;
+      resize: vertical;
+      padding: 12px 14px;
+      font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+      font-size: 13.5px;
+      line-height: 1.52;
+      display: block;
+      tab-size: 2;
+    }
+    textarea.webr-editor:focus {
+      box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.45);
+    }
+
+    pre.webr-output {
+      margin: 0;
+      padding: 10px 14px;
+      border-top: 1px dashed var(--border);
+      background: #060a14;
+      color: #34d399;
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.48;
+      max-height: 185px;
+      overflow: auto;
+      white-space: pre-wrap;
+      display: none;
+    }
+    pre.webr-output.has-output { display: block; }
+    pre.webr-output.is-error { color: #fca5a5; }
 
     .c-comment { color: #64748b; }
     .c-op { color: #38bdf8; font-weight: 700; }
@@ -174,11 +241,11 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 10px;
-      font-size: 14px;
+      font-size: 13.5px;
     }
     table.trace th, table.trace td {
       border: 1px solid var(--border);
-      padding: 7px 10px;
+      padding: 6px 10px;
       text-align: left;
     }
     table.trace th { background: var(--surface-2); color: var(--accent); }
@@ -186,13 +253,13 @@
     table.trace td.mono { font-family: Consolas, monospace; }
 
     .reveal-btn {
-      margin-top: 12px;
+      margin-top: 10px;
       background: rgba(56, 189, 248, 0.16);
       color: var(--accent);
       border: 1px solid rgba(56, 189, 248, 0.45);
       border-radius: 10px;
-      padding: 8px 16px;
-      font-size: 14px;
+      padding: 7px 14px;
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
     }
@@ -200,27 +267,27 @@
 
     .answer-box {
       display: none;
-      margin-top: 12px;
-      padding: 14px 16px;
+      margin-top: 10px;
+      padding: 12px 14px;
       border-radius: 12px;
       background: rgba(52, 211, 153, 0.12);
       border: 1px solid rgba(52, 211, 153, 0.35);
       color: #d1fae5;
-      font-size: 14.5px;
-      line-height: 1.55;
+      font-size: 14px;
+      line-height: 1.5;
     }
     .answer-box.shown { display: block; }
 
     .teacher-note {
       display: none;
-      margin-top: 18px;
-      padding: 12px 16px;
+      margin-top: 14px;
+      padding: 11px 15px;
       border-radius: 12px;
       background: rgba(129, 140, 248, 0.12);
       border: 1px dashed rgba(129, 140, 248, 0.5);
       color: #e0e7ff;
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13.5px;
+      line-height: 1.48;
     }
     body.show-notes .teacher-note { display: block; }
 
@@ -228,12 +295,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 28px;
+      padding: 10px 26px;
       border-top: 1px solid var(--border);
       background: rgba(15, 23, 42, 0.95);
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--muted);
       gap: 12px;
+      flex-wrap: wrap;
     }
     .controls { display: flex; align-items: center; gap: 10px; }
     button.nav-btn {
@@ -241,8 +309,8 @@
       color: var(--text);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 8px 16px;
-      font-size: 14px;
+      padding: 7px 15px;
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
     }
@@ -254,7 +322,7 @@
     a:hover { text-decoration: underline; }
 
     @media (max-width: 820px) {
-      main { padding: 18px; }
+      main { padding: 16px; }
       .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
   </style>
@@ -263,13 +331,13 @@
   <header class="topbar">
     <div class="topbar-left">
       <a href="../../index.html" style="font-size:13px; margin-right:4px;">← Aulas</a>
-      <span class="badge">Aula 2 • R4DS + Prova RFB 2023</span>
-      <span>Fluência em Dados • Receita Federal</span>
+      <span class="badge">Aula 2 • R Interativo (webR)</span>
+      <span>Fluência em Dados • RFB 2023</span>
     </div>
-    <div>
-      Base: <a href="https://pt.r4ds.hadley.nz/data-transform.html" target="_blank" rel="noopener">R4DS Cap. 2, 3 &amp; 12</a>
-      &nbsp;|&nbsp;
-      <span id="slideCounter">Slide 1 / 12</span>
+    <div class="topbar-right">
+      <span id="webrStatus" class="badge amber">⏳ Carregando R no navegador...</span>
+      <span>Base: <a href="https://pt.r4ds.hadley.nz/data-transform.html" target="_blank" rel="noopener">R4DS Cap. 2, 3 &amp; 12</a></span>
+      <span id="slideCounter" style="color:var(--text); font-weight:700;">Slide 1 / 12</span>
     </div>
   </header>
   <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
@@ -279,7 +347,7 @@
     <section class="slide active">
       <div class="kicker">Encontro 2 • 20/11/2026 • 60 minutos</div>
       <h1>Do Cap. 2 ao Cap. 3 do R4DS + Prova RFB 2023</h1>
-      <p class="lead">Fechando o <strong>Capítulo 2</strong>, entrando em <strong>tabelas (<code class="inline">data.frame</code> e <code class="inline">dplyr</code>)</strong> e usando o R em questões reais do seu PDF da Receita Federal.</p>
+      <p class="lead">Agora com <strong>R executável direto nos slides (webR)</strong>: edite, teste com <code class="inline">Ctrl + Enter</code> e veja a saída na hora!</p>
 
       <div class="grid-3">
         <div class="card highlight">
@@ -295,12 +363,12 @@
         <div class="card ok">
           <span class="badge green">35 – 60 min</span>
           <h3 style="margin-top:10px;">3. Questões Reais RFB 2023</h3>
-          <p>Resolver a <strong>Q27 (Estatística)</strong> no R, a questão inédita de R de <strong>Analista-Tributário</strong> e a <strong>Q80 (<code class="inline">NA</code> / SQL)</strong>.</p>
+          <p>Rodar ao vivo a <strong>Q27 (Estatística)</strong>, a questão inédita de R de <strong>Analista-Tributário</strong> e a <strong>Q80 (<code class="inline">NA</code> / SQL)</strong>.</p>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Nota do professor (N):</strong> Como vocês já resolveram a Q76 ("manga/banana/laranja") na Aula 1, hoje avançamos no R4DS (do Cap. 2 para o Cap. 3 + Cap. 12) e usamos questões ainda inéditas da prova RFB 2023 (Q27, Q32, Q80 do PDF + a questão de R de Analista-Tributário 2023).
+        <strong>Nota do professor (N):</strong> O R (webR) carrega automaticamente em ~5–10s assim que a página abre (observe o selo verde lá no topo). Em qualquer caixa de código editável, <code>Ctrl + Enter</code> ou o botão <strong>▶ Executar R</strong> roda o R real no navegador!
       </div>
     </section>
 
@@ -308,35 +376,39 @@
     <section class="slide">
       <div class="kicker">Check-in da Semana • R4DS Cap. 2 (workflow-basics.html)</div>
       <h2>Revisão Rápida do Capítulo 2</h2>
-      <p class="lead">Antes de avançar, vamos conferir os 3 pontos que mais geram dúvida nos exercícios do Cap. 2:</p>
+      <p class="lead">Teste o clássico erro de digitação do Cap. 2 direto aqui no slide:</p>
 
-      <div class="grid-3">
+      <div class="grid-2">
         <div class="card highlight">
-          <h3>1. O erro "invisível"</h3>
-          <div class="code-wrap">my_variable <span class="c-op">&lt;-</span> <span class="c-num">10</span>
-my_varıable</div>
-          <p style="margin-top:10px; font-size:14px;">Um <code class="inline">ı</code> sem pingo (ou maiúscula trocada) já faz o R dizer <em>objeto não encontrado</em>. Sempre leia a mensagem de erro com calma!</p>
-        </div>
-
-        <div class="card">
-          <h3>2. R é exigente com sintaxe</h3>
-          <ul>
-            <li>Atribuição: <code class="inline">&lt;-</code> (atalho <code class="inline">Alt + -</code>)</li>
-            <li>Vetores: <code class="inline">c(1, 2, 3)</code> — nunca <code class="inline">[...]</code></li>
-            <li>Comentários: <code class="inline">#</code></li>
-            <li>Atalhos do RStudio: <code class="inline">Alt + Shift + K</code> mostra o mapa inteiro!</li>
-          </ul>
+          <h3>1. O erro "invisível" (rode e depois conserte!)</h3>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • Ctrl + Enter para rodar</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="4" data-initial="my_variable <- 10&#10;my_varıable">my_variable <- 10
+my_varıable</textarea>
+            <pre class="webr-output"></pre>
+          </div>
+          <p style="margin-top:10px; font-size:14px;">Um <code class="inline">ı</code> sem pingo (ou maiúscula trocada) já gera <em>objeto não encontrado</em>. Troque para <code class="inline">my_variable</code> e rode de novo!</p>
         </div>
 
         <div class="card ok">
-          <h3>3. O que já vencemos</h3>
-          <p style="font-size:14.5px;">Na última aula você já aplicou o Cap. 2 para resolver a <strong>Q76 de Auditor-Fiscal RFB 2023</strong> (<code class="inline">c()</code>, <code class="inline">grep()</code> e <code class="inline">function()</code>)!</p>
-          <p style="margin-top:10px; font-size:14px; color:var(--success);">Agora vamos dar o próximo passo do livro: <strong>tabelas de dados</strong>.</p>
+          <h3>2. O que você já domina</h3>
+          <ul>
+            <li>Atribuição: <code class="inline">&lt;-</code> (atalho no RStudio: <code class="inline">Alt + -</code>)</li>
+            <li>Vetores: <code class="inline">c(1, 2, 3)</code> — nunca <code class="inline">[...]</code></li>
+            <li>Comentários: <code class="inline">#</code> &nbsp;|&nbsp; Mapa de atalhos: <code class="inline">Alt + Shift + K</code></li>
+            <li><strong>Vitória da Aula 1:</strong> já resolveu a <strong>Q76 (AFRFB 2023)</strong> com <code class="inline">c()</code>, <code class="inline">grep()</code> e <code class="inline">function()</code>!</li>
+          </ul>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Condução:</strong> Pergunte o que ela achou da leitura do Cap. 2 e se algum exercício travou no notebook novo.
+        <strong>Condução:</strong> Peça para ela rodar primeiro com o erro proposital para ver a saída vermelha aqui no slide, depois corrigir o <code>ı</code> e rodar novamente.
       </div>
     </section>
 
@@ -372,7 +444,7 @@ my_varıable</div>
       </div>
 
       <div class="teacher-note">
-        <strong>Visão estratégica:</strong> Esse mapa ajuda ela a enxergar que saber R + SQL + Estatística básica cobre uma fatia enorme tanto de Fluência em Dados quanto de Estatística (Q27–Q32 do mesmo PDF).
+        <strong>Visão estratégica:</strong> Esse mapa mostra que dominar R + SQL + Estatística básica cobre grande parte do bloco de Fluência em Dados e ainda ajuda em Estatística (Q27–Q32 do mesmo PDF).
       </div>
     </section>
 
@@ -380,20 +452,30 @@ my_varıable</div>
     <section class="slide">
       <div class="kicker">R4DS • Cap. 3 (Transformação) &amp; Planilha "R II"</div>
       <h2>1. Tabelas no R: <code class="inline">data.frame</code> e <code class="inline">tibble</code></h2>
-      <p class="lead">Uma tabela no R junta vários vetores do mesmo tamanho lado a lado — exatamente como uma planilha ou tabela de Banco de Dados.</p>
+      <p class="lead">Uma tabela junta vários vetores do mesmo tamanho lado a lado. Rode e teste mudar os números!</p>
 
       <div class="grid-2">
         <div class="card highlight">
-          <h3>Criando nossa 1ª tabela (sem instalar pacotes!)</h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button>notas_rfb <span class="c-op">&lt;-</span> <span class="c-fn">data.frame</span>(
-  materia <span class="c-op">=</span> <span class="c-fn">c</span>(<span class="c-str">"Portugues"</span>, <span class="c-str">"Estatistica"</span>, <span class="c-str">"Fluencia"</span>, <span class="c-str">"Tributario"</span>),
-  acertos <span class="c-op">=</span> <span class="c-fn">c</span>(<span class="c-num">8</span>, <span class="c-num">5</span>, <span class="c-num">9</span>, <span class="c-num">7</span>),
-  total   <span class="c-op">=</span> <span class="c-fn">c</span>(<span class="c-num">10</span>, <span class="c-num">6</span>, <span class="c-num">10</span>, <span class="c-num">10</span>)
+          <h3>Criando nossa 1ª tabela ao vivo</h3>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • editável</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="copyEditor(this)">Copiar</button>
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="9" data-initial="notas_rfb <- data.frame(&#10;  materia = c(&quot;Portugues&quot;, &quot;Estatistica&quot;, &quot;Fluencia&quot;, &quot;Tributario&quot;),&#10;  acertos = c(8, 5, 9, 7),&#10;  total   = c(10, 6, 10, 10)&#10;)&#10;&#10;notas_rfb&#10;str(notas_rfb)">notas_rfb <- data.frame(
+  materia = c("Portugues", "Estatistica", "Fluencia", "Tributario"),
+  acertos = c(8, 5, 9, 7),
+  total   = c(10, 6, 10, 10)
 )
 
 notas_rfb
-<span class="c-fn">str</span>(notas_rfb)
-<span class="c-fn">summary</span>(notas_rfb)</div>
+str(notas_rfb)</textarea>
+            <pre class="webr-output"></pre>
+          </div>
         </div>
 
         <div class="card">
@@ -402,14 +484,14 @@ notas_rfb
             <li><strong>Linha</strong> = uma observação (registro).</li>
             <li><strong>Coluna</strong> = uma variável (cada coluna é um vetor <code class="inline">c()</code>).</li>
             <li><code class="inline">data.frame</code> é a tabela padrão do <strong>R base</strong>.</li>
-            <li><code class="inline">tibble</code> (que aparece no Cap. 3 do R4DS) é uma versão moderna do <code class="inline">data.frame</code> que imprime mais bonito no console e mostra o tipo de cada coluna (<code class="inline">chr</code>, <code class="inline">dbl</code>, <code class="inline">int</code>).</li>
-            <li><code class="inline">View(notas_rfb)</code> abre a tabela igual Excel no RStudio!</li>
+            <li><code class="inline">tibble</code> (no Cap. 3 do R4DS) é uma versão moderna do <code class="inline">data.frame</code> que imprime mais organizado e mostra os tipos (<code class="inline">chr</code>, <code class="inline">dbl</code>, <code class="inline">int</code>).</li>
+            <li>No RStudio, <code class="inline">View(notas_rfb)</code> abre a tabela igual Excel!</li>
           </ul>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Prática:</strong> Peça para ela rodar <code>notas_rfb</code> e clicar no objeto <code>notas_rfb</code> lá no painel <strong>Environment</strong> (abre a aba estilo Excel automaticamente).
+        <strong>Prática:</strong> Peça para ela clicar em <strong>▶ Executar R</strong> e depois adicionar uma linha <code>summary(notas_rfb)</code> no final do editor para testar.
       </div>
     </section>
 
@@ -417,38 +499,48 @@ notas_rfb
     <section class="slide">
       <div class="kicker">R4DS • Cap. 27 (R Base) &amp; Planilha "R II"</div>
       <h2>2. Selecionando Colunas e Filtrando Linhas</h2>
-      <p class="lead">No R base (o que mais aparece em enunciados curtos de concurso), usamos <code class="inline">$</code> e <code class="inline">[linha, coluna]</code>.</p>
+      <p class="lead">No R base (o que mais aparece em questões curtas de concurso), usamos <code class="inline">$</code> e <code class="inline">[linha, coluna]</code>.</p>
 
       <div class="grid-2">
         <div class="card highlight">
-          <h3>Teste no RStudio</h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button><span class="c-comment"># Pegar uma coluna como vetor usando $</span>
-notas_rfb<span class="c-op">$</span>acertos
-<span class="c-fn">mean</span>(notas_rfb<span class="c-op">$</span>acertos)
+          <h3>Teste ao vivo (edite o filtro!)</h3>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • Ctrl + Enter</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="copyEditor(this)">Copiar</button>
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="11" data-initial="notas_rfb <- data.frame(&#10;  materia = c(&quot;Portugues&quot;, &quot;Estatistica&quot;, &quot;Fluencia&quot;, &quot;Tributario&quot;),&#10;  acertos = c(8, 5, 9, 7),&#10;  total   = c(10, 6, 10, 10)&#10;)&#10;&#10;mean(notas_rfb$acertos)&#10;notas_rfb[1, ]&#10;notas_rfb[notas_rfb$acertos >= 8, ]">notas_rfb <- data.frame(
+  materia = c("Portugues", "Estatistica", "Fluencia", "Tributario"),
+  acertos = c(8, 5, 9, 7),
+  total   = c(10, 6, 10, 10)
+)
 
-<span class="c-comment"># Acessar por [linha, coluna] (vazio = todas)</span>
-notas_rfb[<span class="c-num">1</span>, ]                    <span class="c-comment"># 1a linha inteira</span>
-notas_rfb[, <span class="c-str">"materia"</span>]            <span class="c-comment"># coluna materia</span>
-
-<span class="c-comment"># Filtrar linhas com condicao logica</span>
-notas_rfb[notas_rfb<span class="c-op">$</span>acertos <span class="c-op">&gt;=</span> <span class="c-num">8</span>, ]
-<span class="c-fn">subset</span>(notas_rfb, acertos <span class="c-op">&gt;=</span> <span class="c-num">8</span>)</div>
+mean(notas_rfb$acertos)
+notas_rfb[1, ]
+notas_rfb[notas_rfb$acertos >= 8, ]</textarea>
+            <pre class="webr-output"></pre>
+          </div>
         </div>
 
         <div class="card">
           <h3>Regra de ouro dos colchetes em tabela</h3>
-          <div class="code-wrap" style="text-align:center; font-size:17px;">tabela[ <span class="c-num">LINHAS</span> , <span class="c-str">COLUNAS</span> ]</div>
-          <ul style="margin-top:14px;">
+          <div class="code-wrap" style="text-align:center; font-size:16px;">tabela[ <span class="c-num">LINHAS</span> , <span class="c-str">COLUNAS</span> ]</div>
+          <ul style="margin-top:12px;">
             <li><strong>Antes da vírgula:</strong> quais <strong>linhas</strong> você quer.</li>
             <li><strong>Depois da vírgula:</strong> quais <strong>colunas</strong> você quer.</li>
             <li><strong>Deixou em branco?</strong> Significa <em>"traga todas"</em>!</li>
-            <li><strong>Cifrao <code class="inline">$</code>:</strong> extrai a coluna inteira como vetor para passar direto em <code class="inline">mean()</code>, <code class="inline">sum()</code>, <code class="inline">sd()</code>.</li>
+            <li><strong>Cifrão <code class="inline">$</code>:</strong> extrai a coluna como vetor (<code class="inline">notas_rfb$acertos</code>).</li>
+            <li><strong>Alternativa legível:</strong> <code class="inline">subset(notas_rfb, acertos &gt;= 8)</code>.</li>
           </ul>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Pergunta rápida:</strong> "Se eu quiser apenas a coluna <code>materia</code> das matérias com <code>acertos &gt;= 8</code>, o que coloco depois da vírgula?" → <code>notas_rfb[notas_rfb$acertos &gt;= 8, "materia"]</code>.
+        <strong>Desafio rápido:</strong> Peça para ela trocar <code>notas_rfb[notas_rfb$acertos &gt;= 8, ]</code> para <code>notas_rfb[notas_rfb$acertos &gt;= 8, "materia"]</code> e rodar!
       </div>
     </section>
 
@@ -456,7 +548,7 @@ notas_rfb[notas_rfb<span class="c-op">$</span>acertos <span class="c-op">&gt;=</
     <section class="slide">
       <div class="kicker">R4DS • Capítulo 3: Transformação de dados (data-transform.html)</div>
       <h2>3. Os Verbos do <code class="inline">dplyr</code> + Pipe <code class="inline">|&gt;</code> (Ponte com SQL)</h2>
-      <p class="lead">No <strong>Capítulo 3 do R4DS</strong>, você vai ver a forma moderna de manipular tabelas — e ela parece muito com <strong>SQL</strong>!</p>
+      <p class="lead">No <strong>Capítulo 3 do R4DS</strong>, o livro usa verbos bem legíveis — que fazem ponte direta com <strong>SQL</strong>!</p>
 
       <div class="grid-2">
         <div class="card">
@@ -477,19 +569,19 @@ notas_rfb[notas_rfb<span class="c-op">$</span>acertos <span class="c-op">&gt;=</
 
         <div class="card highlight">
           <h3>O Pipe <code class="inline">|&gt;</code> (leia como "ENTÃO")</h3>
-          <div class="code-wrap"><span class="c-comment"># Leia linha por linha como uma receita:</span>
+          <div class="code-wrap"><span class="c-comment"># Exemplo do estilo R4DS Cap. 3 (pacote dplyr):</span>
 notas_rfb <span class="c-op">|&gt;</span>
   <span class="c-fn">filter</span>(acertos <span class="c-op">&gt;=</span> <span class="c-num">8</span>) <span class="c-op">|&gt;</span>
   <span class="c-fn">mutate</span>(taxa <span class="c-op">=</span> acertos <span class="c-op">/</span> total) <span class="c-op">|&gt;</span>
   <span class="c-fn">select</span>(materia, acertos, taxa)</div>
           <p style="margin-top:12px; font-size:14px;">
-            <strong>Para ler o Cap. 3 em casa:</strong> o livro usa os pacotes <code class="inline">tidyverse</code> e <code class="inline">dados</code>. Mesmo sem instalar hoje, entender esses 4 verbos + <code class="inline">|&gt;</code> já te permite ler qualquer código do Cap. 3!
+            <strong>Nota:</strong> o pipe nativo <code class="inline">|&gt;</code> funciona no R base também! Experimente depois no RStudio: <code class="inline">c(10, 20, 30) |&gt; mean()</code>.
           </p>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Dica:</strong> Se o notebook dela estiver rápido e sobrar tempo no fim, vocês podem instalar só <code>install.packages("dplyr")</code> — mas não precisa travar a aula de hoje por causa disso.
+        <strong>Dica:</strong> Aqui é conceitual para ela conseguir ler o Capítulo 3 do R4DS sem travar com o pipe <code>|&gt;</code> e os verbos do <code>dplyr</code>.
       </div>
     </section>
 
@@ -497,47 +589,48 @@ notas_rfb <span class="c-op">|&gt;</span>
     <section class="slide">
       <div class="kicker">R + PDF RFB 2023 • Estatística (Q27 pág. 39 e Q32 pág. 46)</div>
       <h2>Aplicando R nas Questões do Seu PDF</h2>
-      <p class="lead">Na <strong>Q27 do PDF</strong>, a banca deu 5 amostras e pediu qual tem o <strong>menor desvio padrão</strong>. Vamos conferir no R!</p>
+      <p class="lead">Na <strong>Q27 do PDF</strong>, a banca deu 5 amostras e pediu qual tem o <strong>menor desvio padrão</strong>. Rode direto aqui!</p>
 
       <div class="grid-2">
         <div class="card highlight">
-          <h3>Rode no RStudio e compare com a pág. 40</h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button>a1 <span class="c-op">&lt;-</span> <span class="c-fn">c</span>(<span class="c-num">-5</span>, <span class="c-num">-3</span>, <span class="c-num">-1</span>, <span class="c-num">1</span>, <span class="c-num">3</span>, <span class="c-num">5</span>, <span class="c-num">7</span>)
-a2 <span class="c-op">&lt;-</span> <span class="c-fn">c</span>(<span class="c-num">22</span>, <span class="c-num">26</span>, <span class="c-num">30</span>, <span class="c-num">34</span>, <span class="c-num">38</span>)
-a3 <span class="c-op">&lt;-</span> <span class="c-fn">c</span>(<span class="c-num">100</span>, <span class="c-num">101</span>, <span class="c-num">102</span>, <span class="c-num">103</span>)
-a4 <span class="c-op">&lt;-</span> <span class="c-fn">c</span>(<span class="c-num">1</span>, <span class="c-num">2</span>, <span class="c-num">3</span>, <span class="c-num">5</span>, <span class="c-num">10</span>)
-a5 <span class="c-op">&lt;-</span> <span class="c-fn">c</span>(<span class="c-num">0.5</span>, <span class="c-num">2.0</span>, <span class="c-num">3.5</span>, <span class="c-num">5.0</span>, <span class="c-num">6.5</span>)
+          <h3>Q27 + Q32 executando ao vivo</h3>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • confira com a pág. 40 do PDF</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="12" data-initial="a1 <- c(-5, -3, -1, 1, 3, 5, 7)&#10;a2 <- c(22, 26, 30, 34, 38)&#10;a3 <- c(100, 101, 102, 103)&#10;a4 <- c(1, 2, 3, 5, 10)&#10;a5 <- c(0.5, 2.0, 3.5, 5.0, 6.5)&#10;&#10;data.frame(&#10;  amostra = 1:5,&#10;  media   = c(mean(a1), mean(a2), mean(a3), mean(a4), mean(a5)),&#10;  desvio  = round(c(sd(a1), sd(a2), sd(a3), sd(a4), sd(a5)), 2)&#10;)">a1 <- c(-5, -3, -1, 1, 3, 5, 7)
+a2 <- c(22, 26, 30, 34, 38)
+a3 <- c(100, 101, 102, 103)
+a4 <- c(1, 2, 3, 5, 10)
+a5 <- c(0.5, 2.0, 3.5, 5.0, 6.5)
 
-tabela_q27 <span class="c-op">&lt;-</span> <span class="c-fn">data.frame</span>(
-  amostra <span class="c-op">=</span> <span class="c-num">1</span><span class="c-op">:</span><span class="c-num">5</span>,
-  media   <span class="c-op">=</span> <span class="c-fn">c</span>(<span class="c-fn">mean</span>(a1), <span class="c-fn">mean</span>(a2), <span class="c-fn">mean</span>(a3), <span class="c-fn">mean</span>(a4), <span class="c-fn">mean</span>(a5)),
-  desvio  <span class="c-op">=</span> <span class="c-fn">round</span>(<span class="c-fn">c</span>(<span class="c-fn">sd</span>(a1), <span class="c-fn">sd</span>(a2), <span class="c-fn">sd</span>(a3), <span class="c-fn">sd</span>(a4), <span class="c-fn">sd</span>(a5)), <span class="c-num">2</span>)
-)
-tabela_q27</div>
+data.frame(
+  amostra = 1:5,
+  media   = c(mean(a1), mean(a2), mean(a3), mean(a4), mean(a5)),
+  desvio  = round(c(sd(a1), sd(a2), sd(a3), sd(a4), sd(a5)), 2)
+)</textarea>
+            <pre class="webr-output"></pre>
+          </div>
         </div>
 
         <div class="card ok">
-          <h3>Resultado (Gabarito C: Amostra 3)</h3>
-          <table class="trace">
-            <thead>
-              <tr><th>Amostra</th><th>Média</th><th>Desvio (<code class="inline">sd()</code>)</th></tr>
-            </thead>
-            <tbody>
-              <tr><td class="mono">1</td><td class="mono">1.0</td><td class="mono">4.32</td></tr>
-              <tr><td class="mono">2</td><td class="mono">30.0</td><td class="mono">6.32</td></tr>
-              <tr><td class="mono"><strong>3</strong></td><td class="mono"><strong>101.5</strong></td><td class="mono"><strong>1.29 ← menor!</strong></td></tr>
-              <tr><td class="mono">4</td><td class="mono">4.2</td><td class="mono">3.56</td></tr>
-              <tr><td class="mono">5</td><td class="mono">3.5</td><td class="mono">2.37</td></tr>
-            </tbody>
-          </table>
-          <p style="margin-top:12px; font-size:14px;">
-            <strong>Bônus Q32 (pág. 46):</strong> correlação <code class="inline">r = 0.756</code> → determinação <code class="inline">round(0.756^2, 2)</code> = <strong>0.57</strong> (Gabarito D).
-          </p>
+          <h3>O que essa questão reforça em R</h3>
+          <ul>
+            <li><code class="inline">sd()</code> calcula o <strong>desvio-padrão amostral</strong> (exatamente a fórmula da pág. 39 do PDF!).</li>
+            <li><code class="inline">1:5</code> cria a sequência <code class="inline">1 2 3 4 5</code>.</li>
+            <li><code class="inline">round(x, 2)</code> arredonda para 2 casas decimais.</li>
+            <li><strong>Gabarito Q27:</strong> Amostra <strong>3</strong> (<code class="inline">sd = 1.29</code>, alternativa <strong>C</strong>).</li>
+            <li><strong>Bônus Q32 (pág. 46):</strong> teste rodar <code class="inline">round(0.756^2, 2)</code> → <strong>0.57</strong> (alternativa <strong>D</strong>).</li>
+          </ul>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Gancho legal:</strong> Mostre como o R usa <code>sd()</code> (desvio-padrão amostral, dividindo por n-1 — exatamente a fórmula da pág. 39 do PDF dela!) e <code>1:5</code> para criar a sequência de 1 a 5.
+        <strong>Gancho:</strong> Mostre como o R junta <code>c()</code>, <code>mean()</code>, <code>sd()</code> e <code>data.frame()</code> para conferir na hora a tabela inteira da pág. 40 do PDF dela!
       </div>
     </section>
 
@@ -545,21 +638,31 @@ tabela_q27</div>
     <section class="slide">
       <div class="kicker">R4DS • Cap. 25 (Funções) &amp; PDF pág. 133</div>
       <h2>4. Revisão Rápida: <code class="inline">if / else</code> e <code class="inline">function()</code></h2>
-      <p class="lead">Para resolver a <strong>outra questão real de R da RFB 2023 (Analista-Tributário)</strong>, precisamos só destes 2 blocos:</p>
+      <p class="lead">Para resolver a <strong>outra questão real de R da RFB 2023 (Analista-Tributário)</strong>, teste este molde ao vivo:</p>
 
       <div class="grid-2">
         <div class="card highlight">
           <h3>Molde de Função + <code class="inline">if / else</code></h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button>situacao <span class="c-op">&lt;-</span> <span class="c-kw">function</span>(nota) {
-  <span class="c-kw">if</span> (nota <span class="c-op">&gt;=</span> <span class="c-num">7</span>) {
-    <span class="c-str">"Aprovada"</span>
-  } <span class="c-kw">else</span> {
-    <span class="c-str">"Revisar"</span>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • mude a nota e rode!</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="10" data-initial="situacao <- function(nota) {&#10;  if (nota >= 7) {&#10;    &quot;Aprovada&quot;&#10;  } else {&#10;    &quot;Revisar&quot;&#10;  }&#10;}&#10;&#10;situacao(8)&#10;situacao(5)">situacao <- function(nota) {
+  if (nota >= 7) {
+    "Aprovada"
+  } else {
+    "Revisar"
   }
 }
 
-<span class="c-fn">situacao</span>(<span class="c-num">8</span>)
-<span class="c-fn">situacao</span>(<span class="c-num">5</span>)</div>
+situacao(8)
+situacao(5)</textarea>
+            <pre class="webr-output"></pre>
+          </div>
         </div>
 
         <div class="card warn">
@@ -567,14 +670,14 @@ tabela_q27</div>
           <h3 style="margin-top:10px;">O retorno implícito</h3>
           <ul>
             <li>Em R, o <code class="inline">return()</code> é <strong>opcional</strong> (como lembra o seu PDF na pág. 133).</li>
-            <li>Sem <code class="inline">return()</code>, a função devolve automaticamente o resultado da <strong>última expressão avaliada</strong>.</li>
+            <li>Sem <code class="inline">return()</code>, a função devolve automaticamente a <strong>última expressão avaliada</strong>.</li>
             <li>E atenção: <code class="inline">print(temp)</code> <strong>imprime na tela E também devolve <code class="inline">temp</code></strong>!</li>
           </ul>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Prática:</strong> Peça para ela rodar <code>situacao(8)</code> e <code>situacao(5)</code> no RStudio antes de irmos para o aquecimento de recursão.
+        <strong>Prática:</strong> Peça para ela testar <code>situacao(7)</code> para verificar o sinal <code>&gt;=</code>.
       </div>
     </section>
 
@@ -587,15 +690,25 @@ tabela_q27</div>
       <div class="grid-2">
         <div class="card highlight">
           <h3>Versão reduzida: <code class="inline">lista(6)</code></h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button>lista <span class="c-op">&lt;-</span> <span class="c-kw">function</span>(param) {
-  <span class="c-kw">if</span> (param <span class="c-op">&gt;</span> <span class="c-num">-3</span>) {
-    temp <span class="c-op">&lt;-</span> param <span class="c-op">+</span> <span class="c-fn">lista</span>(param <span class="c-op">-</span> <span class="c-num">3</span>)
-    <span class="c-fn">print</span>(temp)
-  } <span class="c-kw">else</span> {
-    <span class="c-kw">return</span>(<span class="c-num">0</span>)
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • tente prever antes de rodar!</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="9" data-initial="lista <- function(param) {&#10;  if (param > -3) {&#10;    temp <- param + lista(param - 3)&#10;    print(temp)&#10;  } else {&#10;    return(0)&#10;  }&#10;}&#10;lista(6)">lista <- function(param) {
+  if (param > -3) {
+    temp <- param + lista(param - 3)
+    print(temp)
+  } else {
+    return(0)
   }
 }
-<span class="c-fn">lista</span>(<span class="c-num">6</span>)</div>
+lista(6)</textarea>
+            <pre class="webr-output"></pre>
+          </div>
         </div>
 
         <div class="card">
@@ -615,7 +728,7 @@ tabela_q27</div>
       </div>
 
       <div class="teacher-note">
-        <strong>Ponto-chave:</strong> Como <code>print(temp)</code> está <em>depois</em> da chamada <code>lista(param - 3)</code>, ele só imprime na volta — por isso sai <code>0, 3, 9</code> e não <code>9, 3, 0</code>.
+        <strong>Ponto-chave:</strong> Como <code>print(temp)</code> vem <em>depois</em> da chamada recursiva, ele só imprime na volta — por isso sai <code>0, 3, 9</code>!
       </div>
     </section>
 
@@ -623,25 +736,34 @@ tabela_q27</div>
     <section class="slide">
       <div class="kicker">Questão Real de R (Inédita) • Analista-Tributário RFB 2023 (FGV)</div>
       <h2>Qual a ordem dos valores exibidos por <code class="inline">lista(15)</code>?</h2>
-      <p class="lead">Esta foi a outra questão de R da Receita Federal 2023 — tente prever os 6 números antes de revelar:</p>
+      <p class="lead">Tente prever os 6 números no papel, depois clique em <strong>▶ Executar R</strong> para conferir ao vivo!</p>
 
       <div class="grid-2">
         <div class="card">
           <h3>Código exato da prova</h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button>lista <span class="c-op">&lt;-</span> <span class="c-kw">function</span>(param) {
-  <span class="c-kw">if</span> (param <span class="c-op">&gt;</span> <span class="c-num">-3</span>) {
-    temp <span class="c-op">&lt;-</span> param <span class="c-op">+</span> <span class="c-fn">lista</span>(param <span class="c-op">-</span> <span class="c-num">3</span>)
-    <span class="c-fn">print</span>(temp)
-  } <span class="c-kw">else</span> {
-    <span class="c-kw">return</span>(<span class="c-num">0</span>)
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • ATRFB 2023 (FGV)</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="9" data-initial="lista <- function(param) {&#10;  if (param > -3) {&#10;    temp <- param + lista(param - 3)&#10;    print(temp)&#10;  } else {&#10;    return(0)&#10;  }&#10;}&#10;lista(15)">lista <- function(param) {
+  if (param > -3) {
+    temp <- param + lista(param - 3)
+    print(temp)
+  } else {
+    return(0)
   }
 }
-<span class="c-fn">lista</span>(<span class="c-num">15</span>)</div>
-          <button class="reveal-btn" onclick="toggleAnswer(this)">Revelar saída exata</button>
+lista(15)</textarea>
+            <pre class="webr-output"></pre>
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">Revelar explicação da pegadinha</button>
           <div class="answer-box">
-            <strong>Ordem exibida no Console:</strong><br>
-            <code class="inline">0</code>, <code class="inline">3</code>, <code class="inline">9</code>, <code class="inline">18</code>, <code class="inline">30</code>, <code class="inline">45</code><br>
-            <em>Atenção:</em> na prova, uma das pegadinhas clássicas é a ordem invertida (<code class="inline">45 → 0</code>).
+            <strong>Ordem correta:</strong> <code class="inline">0, 3, 9, 18, 30, 45</code>.<br>
+            <em>Pegadinha clássica:</em> marcar invertido (<code class="inline">45 → 0</code>). Como <code class="inline">print(temp)</code> vem <strong>depois</strong> da recursão, ele imprime no retorno.
           </div>
         </div>
 
@@ -665,7 +787,7 @@ tabela_q27</div>
       </div>
 
       <div class="teacher-note">
-        <strong>Condução:</strong> Peça para ela calcular os 3 últimos valores (<code>9+9=18</code>, <code>12+18=30</code>, <code>15+30=45</code>) e depois rode <code>lista(15)</code> no RStudio para validar.
+        <strong>Condução:</strong> Peça para ela calcular os 3 últimos valores no papel e depois clicar em <strong>▶ Executar R</strong> para ver o R confirmar!
       </div>
     </section>
 
@@ -673,25 +795,33 @@ tabela_q27</div>
     <section class="slide">
       <div class="kicker">Bônus: PDF RFB 2023 (Q80, pág. 139) ↔ R4DS Cap. 12 (logicals.html)</div>
       <h2>Lógica de 3 Estados: <code class="inline">? (SQL)</code> = <code class="inline">NA (R)</code></h2>
-      <p class="lead">A <strong>Q80 do seu PDF</strong> cobrou lógica de 3 estados (<code class="inline">T</code>, <code class="inline">F</code>, <code class="inline">?</code>) em SQL — e no R o valor desconhecido <code class="inline">NA</code> funciona <strong>exatamente igual</strong>!</p>
+      <p class="lead">A <strong>Q80 do seu PDF</strong> cobrou lógica de 3 estados (<code class="inline">T</code>, <code class="inline">F</code>, <code class="inline">?</code>) em SQL — e no R o <code class="inline">NA</code> funciona <strong>exatamente igual</strong>!</p>
 
       <div class="grid-2">
         <div class="card highlight">
           <h3>Rodando a Q80 de SQL direto no R!</h3>
-          <div class="code-wrap"><button class="copy-btn" onclick="copyCode(this)">Copiar</button><span class="c-comment"># Em R: | = OR,  &amp; = AND,  ! = NOT,  NA = unknown (?)</span>
+          <div class="webr-box">
+            <div class="webr-toolbar">
+              <span>R ao vivo • | = OR, &amp; = AND, ! = NOT, NA = ?</span>
+              <div class="webr-actions">
+                <button class="webr-btn" onclick="resetCode(this)">↺ Resetar</button>
+                <button class="webr-btn run" onclick="runWebR(this)">▶ Executar R</button>
+              </div>
+            </div>
+            <textarea class="webr-editor" rows="9" data-initial="# I. (T OR F) AND (? OR T)&#10;(TRUE | FALSE) &amp; (NA | TRUE)&#10;&#10;# II. T AND ((? OR F) OR ?)&#10;TRUE &amp; ((NA | FALSE) | NA)&#10;&#10;# III. NOT (? AND (? AND ?))&#10;!(NA &amp; (NA &amp; NA))"># I. (T OR F) AND (? OR T)
+(TRUE | FALSE) & (NA | TRUE)
 
-<span class="c-comment"># I. (T OR F) AND (? OR T)</span>
-(<span class="c-kw">TRUE</span> <span class="c-op">|</span> <span class="c-kw">FALSE</span>) <span class="c-op">&amp;</span> (<span class="c-kw">NA</span> <span class="c-op">|</span> <span class="c-kw">TRUE</span>)
+# II. T AND ((? OR F) OR ?)
+TRUE & ((NA | FALSE) | NA)
 
-<span class="c-comment"># II. T AND ((? OR F) OR ?)</span>
-<span class="c-kw">TRUE</span> <span class="c-op">&amp;</span> ((<span class="c-kw">NA</span> <span class="c-op">|</span> <span class="c-kw">FALSE</span>) <span class="c-op">|</span> <span class="c-kw">NA</span>)
-
-<span class="c-comment"># III. NOT (? AND (? AND ?))</span>
-<span class="c-op">!</span>(<span class="c-kw">NA</span> <span class="c-op">&amp;</span> (<span class="c-kw">NA</span> <span class="c-op">&amp;</span> <span class="c-kw">NA</span>))</div>
-          <button class="reveal-btn" onclick="toggleAnswer(this)">Revelar saída e gabarito da Q80</button>
+# III. NOT (? AND (? AND ?))
+!(NA & (NA & NA))</textarea>
+            <pre class="webr-output"></pre>
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">Revelar gabarito da Q80</button>
           <div class="answer-box">
-            <strong>Saídas no R:</strong> Item I → <code class="inline">TRUE</code> &nbsp;|&nbsp; Item II → <code class="inline">NA</code> &nbsp;|&nbsp; Item III → <code class="inline">NA</code>.<br>
-            <strong>Gabarito da Q80 (pág. 140): D (II e III, apenas)</strong>!
+            <strong>Saídas:</strong> I → <code class="inline">TRUE</code> &nbsp;|&nbsp; II → <code class="inline">NA</code> &nbsp;|&nbsp; III → <code class="inline">NA</code>.<br>
+            <strong>Gabarito Q80 (pág. 140): D (II e III, apenas)</strong>!
           </div>
         </div>
 
@@ -700,7 +830,7 @@ tabela_q27</div>
           <ul>
             <li>No <strong>OU (<code class="inline">|</code>)</strong>, basta <strong>um lado ser verdadeiro</strong> para o resultado já ser <code class="inline">TRUE</code> — nem importa o que está escondido no <code class="inline">NA</code>!</li>
             <li>Já no <strong>E (<code class="inline">&amp;</code>)</strong>, se um lado é <code class="inline">TRUE</code> e o outro é <code class="inline">NA</code>, não dá para saber → continua <code class="inline">NA</code>.</li>
-            <li>Esse mesmo conceito está no <strong>Capítulo 12 (Vetores lógicos)</strong> do R4DS!</li>
+            <li>Teste também no editor ao lado: <code class="inline">FALSE &amp; NA</code> (dá <code class="inline">FALSE</code>!).</li>
           </ul>
         </div>
       </div>
@@ -714,7 +844,7 @@ tabela_q27</div>
     <section class="slide">
       <div class="kicker">Fechamento • Plano da Semana no R4DS</div>
       <h2>Resumo de Hoje &amp; Leitura da Semana</h2>
-      <p class="lead">Seguimos firme no <strong>R para Ciência de Dados</strong> com os pés nas questões reais da Receita Federal.</p>
+      <p class="lead">Seguimos firme no <strong>R para Ciência de Dados</strong> com exercícios práticos direto nos slides e no RStudio.</p>
 
       <div class="grid-2">
         <div class="card ok">
@@ -730,28 +860,29 @@ tabela_q27</div>
         <div class="card highlight">
           <h3>Para estudar até a próxima sexta</h3>
           <ol>
-            <li><strong>R4DS — Capítulo 3 (Transformação):</strong><br><a href="https://pt.r4ds.hadley.nz/data-transform.html" target="_blank" rel="noopener">pt.r4ds.hadley.nz/data-transform.html</a><br><em>Foco:</em> introdução de <code class="inline">tibble</code>, <code class="inline">filter()</code>, <code class="inline">select()</code>, <code class="inline">arrange()</code> e pipe <code class="inline">|&gt;</code>.</li>
+            <li><strong>R4DS — Capítulo 3 (Transformação):</strong><br><a href="https://pt.r4ds.hadley.nz/data-transform.html" target="_blank" rel="noopener">pt.r4ds.hadley.nz/data-transform.html</a><br><em>Foco:</em> <code class="inline">tibble</code>, <code class="inline">filter()</code>, <code class="inline">select()</code>, <code class="inline">arrange()</code> e pipe <code class="inline">|&gt;</code>.</li>
             <li><strong>R4DS — Capítulo 12 (só o começo):</strong><br><a href="https://pt.r4ds.hadley.nz/logicals.html" target="_blank" rel="noopener">pt.r4ds.hadley.nz/logicals.html</a> (comparações e <code class="inline">NA</code>).</li>
-            <li><strong>Prática no RStudio:</strong> criar um <code class="inline">data.frame</code> com 4 matérias da sua planilha, calcular a média com <code class="inline">mean(df$col)</code> e filtrar com <code class="inline">subset()</code>.</li>
+            <li><strong>Prática:</strong> refazer os testes editando os blocos de código direto nestes slides (ou no RStudio).</li>
           </ol>
         </div>
       </div>
 
       <div class="teacher-note">
-        <strong>Combinado para a Aula 3:</strong> Se quiserem instalar <code>tidyverse</code> e <code>dados</code> durante a semana, na Aula 3 dá para praticar <code>dplyr</code> ao vivo com os dados do livro — ou abrir o bloco de <strong>Python I do zero</strong>!
+        <strong>Combinado para a Aula 3:</strong> Se quiserem instalar <code>tidyverse</code> durante a semana, na Aula 3 praticamos <code>dplyr</code> ao vivo — ou entramos em <strong>Python I do zero</strong>!
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div>Atalhos: <code class="inline">←</code> <code class="inline">→</code> trocar slide &nbsp;•&nbsp; <code class="inline">F11</code> tela cheia &nbsp;•&nbsp; <code class="inline">N</code> notas do professor</div>
+    <div>Atalhos: <code class="inline">←</code> <code class="inline">→</code> trocar slide &nbsp;•&nbsp; <code class="inline">Ctrl + Enter</code> rodar R no editor &nbsp;•&nbsp; <code class="inline">N</code> notas</div>
     <div class="controls">
-      <button class="nav-btn" id="notesBtn" onclick="toggleNotes()">Notas do professor (N)</button>
+      <button class="nav-btn" id="notesBtn" onclick="toggleNotes()">Notas (N)</button>
       <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
       <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Próximo →</button>
     </div>
   </footer>
 
+  <!-- Navegação e utilidades -->
   <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const counter = document.getElementById("slideCounter");
@@ -788,22 +919,104 @@ tabela_q27</div>
       btn.textContent = shown ? "Ocultar resposta" : "Revelar resposta";
     }
 
-    function copyCode(btn) {
-      const pre = btn.parentElement;
-      const text = pre.innerText.replace(/^Copiar\s*/, "").replace(/^Copiado!\s*/, "").trim();
-      navigator.clipboard.writeText(text).then(() => {
+    function resetCode(btn) {
+      const box = btn.closest(".webr-box");
+      const editor = box.querySelector(".webr-editor");
+      const out = box.querySelector(".webr-output");
+      editor.value = editor.dataset.initial;
+      out.textContent = "";
+      out.classList.remove("has-output", "is-error");
+    }
+
+    function copyEditor(btn) {
+      const box = btn.closest(".webr-box");
+      const editor = box.querySelector(".webr-editor");
+      navigator.clipboard.writeText(editor.value.trim()).then(() => {
         btn.textContent = "Copiado!";
         setTimeout(() => { btn.textContent = "Copiar"; }, 1400);
       });
     }
 
     document.addEventListener("keydown", (e) => {
+      const tag = document.activeElement ? document.activeElement.tagName : "";
+      if (tag === "TEXTAREA" || tag === "INPUT") {
+        if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+          e.preventDefault();
+          const runBtn = document.activeElement.closest(".webr-box")?.querySelector(".webr-btn.run");
+          if (runBtn) runBtn.click();
+        }
+        return;
+      }
       if (e.key === "ArrowRight" || e.key === "PageDown") changeSlide(1);
       if (e.key === "ArrowLeft" || e.key === "PageUp") changeSlide(-1);
       if (e.key.toLowerCase() === "n") toggleNotes();
     });
 
     render();
+  </script>
+
+  <!-- Motor webR (executa R real no navegador via WebAssembly / PostMessage) -->
+  <script type="module">
+    import { WebR, ChannelType } from "https://webr.r-wasm.org/latest/webr.mjs";
+
+    const statusEl = document.getElementById("webrStatus");
+    let webR = null;
+    let ready = false;
+
+    async function initWebR() {
+      try {
+        webR = new WebR({ channelType: ChannelType.PostMessage });
+        await webR.init();
+        ready = true;
+        statusEl.textContent = "● R pronto no navegador";
+        statusEl.className = "badge green";
+      } catch (err) {
+        statusEl.textContent = "⚠ Falha ao carregar webR";
+        statusEl.className = "badge red";
+        console.error("webR init error:", err);
+      }
+    }
+
+    window.runWebR = async function(btn) {
+      const box = btn.closest(".webr-box");
+      const editor = box.querySelector(".webr-editor");
+      const out = box.querySelector(".webr-output");
+
+      out.classList.add("has-output");
+      out.classList.remove("is-error");
+
+      if (!ready) {
+        out.textContent = "⏳ Aguarde alguns segundos, o motor R (webR) ainda está terminando de carregar...";
+        return;
+      }
+
+      btn.disabled = true;
+      const oldLabel = btn.textContent;
+      btn.textContent = "Rodando...";
+      out.textContent = "Executando...";
+
+      const shelter = await new webR.Shelter();
+      try {
+        const res = await shelter.captureR(editor.value, {
+          withAutoprint: true,
+          captureStreams: true,
+          captureConditions: false
+        });
+        const lines = res.output
+          .filter(o => o.type === "stdout" || o.type === "stderr")
+          .map(o => o.data);
+        out.textContent = lines.length ? lines.join("\n") : "(executado sem saída impressa)";
+      } catch (err) {
+        out.classList.add("is-error");
+        out.textContent = String(err.message || err);
+      } finally {
+        await shelter.purge();
+        btn.disabled = false;
+        btn.textContent = oldLabel;
+      }
+    };
+
+    initWebR();
   </script>
 </body>
 </html>
